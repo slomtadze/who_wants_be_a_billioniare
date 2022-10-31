@@ -13,7 +13,12 @@
   border-radius: 1.5em;
 }
 
-.list-item .active {
+.list-active {
+  width: 100%;
+  padding: 0.3em;
+  text-align: start;
+  color: rgb(173, 101, 33);
+  border-radius: 1.5em;
   background-color: rgb(237, 129, 28);
   color: black;
   font-weight: bolder;

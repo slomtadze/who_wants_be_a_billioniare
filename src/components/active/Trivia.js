@@ -5,14 +5,34 @@ import useSound from "use-sound";
 
 import correct from "../assets/src_sounds_correct.mp3";
 import wrong from "../assets/src_sounds_wrong.mp3"; */
+import { useState } from "react";
+import data from "../../assets/Data/DUMMY_QUESTIONS";
 import styles from "./Trivia.module.css";
 
 const Trivia = (props) => {
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [className, setClassName] = useState(styles.answer);
+
+  const { id } = props;
+
+  const currentQuestion = data.find((question) => question.id === id);
+
+  const onAnwerConfirm = (answer) => {
+    setSelectedAnswer(answer);
+    setClassName(styles.correct);
+  };
+
+  /*     setSelectedAnswer(a);
+    setClassName("answer active");
+    delay(3000, () => {
+      setClassName(a.correct ? "answer correct" : "answer wrong");
+    }); */
+
   /*   const { setStop, questionNumber, setQuestionNumber } = props;
 
   const [question, setQuestion] = useState(null);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [className, setClassName] = useState("answer");
+  ;
+  
 
   const [corectAnswer] = useSound(correct);
   const [wrongAnswer] = useSound(wrong);
@@ -27,12 +47,7 @@ const Trivia = (props) => {
     }, duration);
   };
 
-  const clickHandler = (a) => {
-    setSelectedAnswer(a);
-    setClassName("answer active");
-    delay(3000, () => {
-      setClassName(a.correct ? "answer correct" : "answer wrong");
-    });
+
 
     delay(5000, () => {
       if (a.correct) {
@@ -53,12 +68,32 @@ const Trivia = (props) => {
 
   return (
     <div className={styles.trivia}>
-      <div className={styles.question}>Question</div>
+      <div className={styles.timer}>1</div>
+      <div className={styles.question}>
+        {currentQuestion ? currentQuestion.question : ""}
+      </div>
       <div className={styles.answers}>
-        <div className={styles.answer}>Answer</div>
-        <div className={styles.answer}>Answer</div>
-        <div className={styles.answer}>Answer</div>
-        <div className={styles.answer}>Answer</div>
+        {currentQuestion.answers.map((answer) => {
+          if (selectedAnswer == answer.text) {
+            return (
+              <div
+                className={styles.answer}
+                onClick={() => onAnwerConfirm(answer)}
+              >
+                {answer.text}
+              </div>
+            );
+          } else {
+            return (
+              <div
+                className={styles.answer}
+                onClick={() => onAnwerConfirm(answer)}
+              >
+                {answer.text}
+              </div>
+            );
+          }
+        })}
       </div>
     </div>
   );

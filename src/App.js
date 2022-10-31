@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import styles from "./App.module.css";
 import Trivia from "./components/active/Trivia";
+import Timer from "./Helpers/Timer";
 import List from "./components/List/List";
 import Modal from "./components/UI/Modal";
 
@@ -20,7 +21,7 @@ const App = () => {
       {modalIsActive && <Modal onClose={overlayHandler} />}
       <div className={styles.box}>
         <div className={styles["left-side"]}>
-          <Trivia />
+          <Trivia id={questionNumber} />
         </div>
         <div className={styles["right-side"]}>
           <List number={questionNumber} />
