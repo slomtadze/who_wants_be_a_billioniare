@@ -7,7 +7,7 @@ import Modal from "./components/UI/Modal";
 
 const App = () => {
   const [questionNumber, setQuestionNumber] = useState(1);
-  const [stop, setStop] = useState(false);
+
   const [earnedMoney, setEarnedMoney] = useState("$ 0");
   /* const [letsPlay] = useSound(play); */
   const [modalIsActive, setModalIsActive] = useState(true);
@@ -15,13 +15,19 @@ const App = () => {
   const overlayHandler = () => {
     setModalIsActive(false);
   };
+  const questionNumberHandler = () => {
+    setQuestionNumber((prev) => prev + 1);
+  };
 
   return (
     <Fragment>
       {modalIsActive && <Modal onClose={overlayHandler} />}
       <div className={styles.box}>
         <div className={styles["left-side"]}>
-          <Trivia id={questionNumber} />
+          <Trivia
+            id={!modalIsActive && questionNumber}
+            onExpire={questionNumberHandler}
+          />
         </div>
         <div className={styles["right-side"]}>
           <List number={questionNumber} />
