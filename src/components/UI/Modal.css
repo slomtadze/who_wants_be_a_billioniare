@@ -12,9 +12,9 @@
   position: fixed;
   top: 40vh;
   left: 5%;
-  width: 50%;
+  width: 500px;
   background-color: rgb(146, 150, 204);
-  padding: 1rem;
+  padding: 1em;
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
@@ -23,8 +23,8 @@
 
 @media (min-width: 768px) {
   .modal {
-    width: 20rem;
-    left: calc(50% - 20rem);
+    width: 25em;
+    left: calc(50% - 25em);
   }
 }
 
@@ -48,11 +48,12 @@
 
 .container button {
   width: 50%;
+  margin-top: 1em;
   border-radius: 1rem;
   font-size: 1.1rem;
   cursor: pointer;
   transition: 0.25s;
-  padding: 0.1em 0.5em;
+  padding: 0.3em 0.5em;
   text-align: center;
   background-color: #6b71bd;
   border: none;
