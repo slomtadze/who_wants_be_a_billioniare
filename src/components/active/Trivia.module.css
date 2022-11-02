@@ -68,6 +68,9 @@
   cursor: auto;
 }
 
+.wrong {
+  background: red;
+}
 .blocked {
   cursor: auto;
 }

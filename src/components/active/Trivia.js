@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Answer from "./Answer";
 
 import data from "../../assets/Data/DUMMY_QUESTIONS";
 import Timer from "../../Helpers/Timer";
@@ -6,6 +7,7 @@ import styles from "./Trivia.module.css";
 
 const Trivia = (props) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [correctAnswer, setCorrectAnswer] = useState(null);
   const [pauseTimer, setPauseTimer] = useState(false);
   const [selectedClassName, setSelectedClassName] = useState(styles.answer);
   const { id, modalIsActive, stop, setStop, questionNumberHandler } = props;
@@ -23,12 +25,12 @@ const Trivia = (props) => {
     setPauseTimer(true);
 
     delay(3000, () => {
-      console.log(currentQuestion.answers);
-      console.log(answer.text);
       const currentAnswer = currentQuestion.answers.find(
         (item) => item.text === answer.text
       );
-      console.log(currentAnswer);
+      const correctAnswer = currentQuestion.answers.find(
+        (item) => item.correct === true
+      );
       if (currentAnswer.correct) {
         setSelectedClassName(styles.correct);
         delay(1500, () => {
@@ -36,6 +38,10 @@ const Trivia = (props) => {
           setSelectedAnswer(null);
           setPauseTimer(false);
         });
+      } else if (!currentAnswer.correct) {
+        setSelectedClassName(styles.wrong);
+        setCorrectAnswer(correctAnswer);
+        setStop(true);
       }
     });
   };
@@ -61,17 +67,24 @@ const Trivia = (props) => {
         {currentQuestion &&
           currentQuestion.answers.map((answer) => {
             if (selectedAnswer === answer.text) {
-              return <div className={selectedClassName}>{answer.text}</div>;
+              return (
+                <Answer className={selectedClassName} text={answer.text} />
+              );
             } else if (selectedAnswer !== answer.text && selectedAnswer) {
-              return <div className={styles.blocked}>{answer.text}</div>;
+              return <Answer className={styles.blocked} text={answer.text} />;
+            } else if (
+              correctAnswer &&
+              correctAnswer.correct === answer.correct &&
+              selectedAnswer
+            ) {
+              return <Answer className={styles.correct} text={answer.text} />;
             } else {
               return (
-                <div
+                <Answer
                   className={styles.answer}
+                  text={answer.text}
                   onClick={() => onAnwerSelect(answer)}
-                >
-                  {answer.text}
-                </div>
+                />
               );
             }
           })}

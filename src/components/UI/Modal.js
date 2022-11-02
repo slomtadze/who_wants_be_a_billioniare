@@ -13,10 +13,12 @@ const ModalOverlay = (props) => {
       <div className="content">
         {" "}
         <div className="container">
-          <h3>{props.text}</h3>
-          <button onClick={props.onClose}>{props.button}</button>
-          {props.buttonEnd && (
-            <button onClick={props.onClose}>{props.buttonEnd}</button>
+          <h3>{props.title}</h3>
+          {props.buttonText && (
+            <button onClick={props.onGameStart}>{props.buttonText}</button>
+          )}
+          {props.buttonEndText && (
+            <button onClick={props.onButtonEnd}>{props.buttonEndText}</button>
           )}
         </div>
       </div>
@@ -32,10 +34,11 @@ const Modal = (props) => {
       {ReactDOM.createPortal(<Backdrop />, portalElement)}
       {ReactDOM.createPortal(
         <ModalOverlay
-          onClose={props.onClose}
-          text={props.text}
-          button={props.button}
-          buttonEnd={props.buttonEnd}
+          onGameStart={props.onGameStart}
+          title={props.title}
+          buttonText={props.buttonText}
+          buttonEndText={props.buttonEndText}
+          onButtonEnd={props.onButtonEnd}
         >
           {props.children}
         </ModalOverlay>,
