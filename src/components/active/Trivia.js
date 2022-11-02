@@ -10,7 +10,14 @@ const Trivia = (props) => {
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [pauseTimer, setPauseTimer] = useState(false);
   const [selectedClassName, setSelectedClassName] = useState(styles.answer);
-  const { id, modalIsActive, stop, setStop, questionNumberHandler } = props;
+  const {
+    id,
+    modalIsActive,
+    stop,
+    setStop,
+    questionNumberHandler,
+    setEarnedMoney,
+  } = props;
   const currentQuestion = data.find((question) => question.id === id);
 
   console.log("Trivia render");
@@ -19,7 +26,10 @@ const Trivia = (props) => {
     setSelectedAnswer(null);
     setCorrectAnswer(null);
     setPauseTimer(false);
-    setSelectedClassName(styles.answer);
+    setSelectedClassName(styles.answer)
+    if(5< id && id < 11){
+      setEarnedMoney(1000)
+    } 
   }, [id]);
 
   const delay = (duration, callback) => {
