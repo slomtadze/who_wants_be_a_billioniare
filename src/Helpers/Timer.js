@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
 export default function Timer(props) {
-  const { setStop, questionNumber, pauseTimer } = props;
-  const [timer, setTimer] = useState(30);
+  const { setStop, questionNumber, pauseTimer, stop } = props;
+  const [timer, setTimer] = useState(10);
 
   useEffect(() => {
     if (timer === 0) {
       setStop(true);
+      return;
     } else if (pauseTimer) {
       return;
     }
@@ -14,10 +15,10 @@ export default function Timer(props) {
       setTimer((prev) => prev - 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [timer, setStop]);
+  }, [timer, stop, setStop, pauseTimer]);
 
   useEffect(() => {
-    setTimer(30);
+    setTimer(10);
   }, [questionNumber]);
   return timer;
 }
