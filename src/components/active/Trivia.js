@@ -13,6 +13,15 @@ const Trivia = (props) => {
   const { id, modalIsActive, stop, setStop, questionNumberHandler } = props;
   const currentQuestion = data.find((question) => question.id === id);
 
+  console.log("Trivia render");
+
+  useEffect(() => {
+    setSelectedAnswer(null);
+    setCorrectAnswer(null);
+    setPauseTimer(false);
+    setSelectedClassName(styles.answer);
+  }, [id]);
+
   const delay = (duration, callback) => {
     setTimeout(() => {
       callback();

@@ -19,6 +19,7 @@ const App = () => {
   const gameRestartHandler = () => {
     setStop(false);
     setModalIsActive(true);
+    setQuestionNumber(1);
   };
   const endGameEndHandler = () => {
     setStop(false);
@@ -53,12 +54,6 @@ const App = () => {
 
   return (
     <Fragment>
-      {/* {modalIsActive && (
-        
-      )}
-      {stop && (
-        
-      )} */}
       {modal}
       <div className={styles.box}>
         <div className={styles["left-side"]}>
