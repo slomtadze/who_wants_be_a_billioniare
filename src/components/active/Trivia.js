@@ -6,27 +6,29 @@ import styles from "./Trivia.module.css";
 
 const Trivia = (props) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [pauseTimer, setPauseTimer] = useState(false);
   const [selectedClassName, setSelectedClassName] = useState(styles.answer);
-  const {
-    id,
-    earnedMoney,
-    modalIsActive,
-    stop,
-    setStop,
-    questionNumberHandler,
-  } = props;
+  const { id, modalIsActive, stop, setStop, questionNumberHandler } = props;
   const currentQuestion = data.find((question) => question.id === id);
 
   const onAnwerSelect = (answer) => {
     setSelectedAnswer(answer.text);
     setSelectedClassName(styles.selected);
+    setPauseTimer(true);
   };
-  
 
   return (
     <div className={styles.trivia}>
       <div className={styles.timer}>
-        {modalIsActive ? 30 : <Timer setStop={setStop} questionNumber={id} />}
+        {modalIsActive ? (
+          30
+        ) : (
+          <Timer
+            setStop={setStop}
+            questionNumber={id}
+            pauseTimer={pauseTimer}
+          />
+        )}
       </div>
       <div className={styles.question}>
         {currentQuestion ? currentQuestion.question : ""}
