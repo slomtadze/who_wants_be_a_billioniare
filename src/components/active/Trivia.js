@@ -11,10 +11,32 @@ const Trivia = (props) => {
   const { id, modalIsActive, stop, setStop, questionNumberHandler } = props;
   const currentQuestion = data.find((question) => question.id === id);
 
+  const delay = (duration, callback) => {
+    setTimeout(() => {
+      callback();
+    }, duration);
+  };
+
   const onAnwerSelect = (answer) => {
     setSelectedAnswer(answer.text);
     setSelectedClassName(styles.selected);
     setPauseTimer(true);
+
+    delay(3000, () => {
+      console.log(currentQuestion.answers);
+      console.log(answer.text);
+      const currentAnswer = currentQuestion.answers.find(
+        (item) => item.text === answer.text
+      );
+      console.log(currentAnswer);
+      if (currentAnswer.correct) {
+        setSelectedClassName(styles.correct);
+        delay(1500, () => {
+          questionNumberHandler();
+          setSelectedAnswer(null);
+        });
+      }
+    });
   };
 
   return (

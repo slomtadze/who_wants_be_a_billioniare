@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import styles from "./App.module.css";
 import Trivia from "./components/active/Trivia";
-import Timer from "./Helpers/Timer";
 import List from "./components/List/List";
 import Modal from "./components/UI/Modal";
 
