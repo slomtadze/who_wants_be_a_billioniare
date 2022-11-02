@@ -34,6 +34,7 @@ const Trivia = (props) => {
         delay(1500, () => {
           questionNumberHandler();
           setSelectedAnswer(null);
+          setPauseTimer(false);
         });
       }
     });
@@ -46,6 +47,7 @@ const Trivia = (props) => {
           30
         ) : (
           <Timer
+            stop={stop}
             setStop={setStop}
             questionNumber={id}
             pauseTimer={pauseTimer}
