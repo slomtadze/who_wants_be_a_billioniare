@@ -11,31 +11,55 @@ const App = () => {
   const [earnedMoney, setEarnedMoney] = useState("$ 0");
   /* const [letsPlay] = useSound(play); */
   const [modalIsActive, setModalIsActive] = useState(true);
+  const [endGameModal, setEndGameModal] = useState(false);
 
-  const overlayHandler = () => {
+  const gameStartHandler = () => {
     setModalIsActive(false);
+  };
+  const gameRestartHandler = () => {
+    setStop(false);
+    setModalIsActive(true);
+  };
+  const endGameEndHandler = () => {
+    setStop(false);
   };
   const questionNumberHandler = () => {
     setQuestionNumber((prev) => prev + 1);
   };
 
+  // Gasasworebelia end game
+  let modal;
+  if (modalIsActive) {
+    modal = (
+      <Modal
+        onGameStart={gameStartHandler}
+        title="Are you ready?"
+        buttonText="Let's do it"
+      />
+    );
+  } else if (stop) {
+    modal = (
+      <Modal
+        title={`You have won ${earnedMoney} `}
+        buttonText="Take another try"
+        onGameStart={gameRestartHandler}
+        buttonEndText="End Game"
+        onButtonEnd={endGameEndHandler}
+      />
+    );
+  } else if (endGameModal) {
+    modal = <Modal title="Thanks for play" />;
+  }
+
   return (
     <Fragment>
-      {modalIsActive && (
-        <Modal
-          onClose={overlayHandler}
-          text="Are you ready?"
-          button="Let's do it"
-        />
+      {/* {modalIsActive && (
+        
       )}
       {stop && (
-        <Modal
-          onClose={overlayHandler}
-          text={`You have won ${earnedMoney} `}
-          button="Take another try"
-          buttonEnd="End Game"
-        />
-      )}
+        
+      )} */}
+      {modal}
       <div className={styles.box}>
         <div className={styles["left-side"]}>
           <Trivia

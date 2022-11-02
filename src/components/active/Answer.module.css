@@ -1,0 +1,82 @@
+.answer,
+.selected,
+.correct,
+.wrong,
+.blocked {
+  background: linear-gradient(#060116, black);
+  width: 39%;
+  padding: 0.5em;
+  text-align: center;
+  border: 1px solid rgb(70, 55, 204);
+  border-radius: 0.9em;
+  font-size: 1.3rem;
+  font-weight: 300; /*სანახავია ფონტი */
+  margin: 0 1% 0.5% 1%;
+  cursor: pointer;
+}
+.selected {
+  background: rgb(237, 129, 28);
+  cursor: auto;
+}
+
+.correct {
+  background: green;
+  cursor: auto;
+}
+
+.wrong {
+  background: red;
+}
+.blocked {
+  cursor: auto;
+}
+
+.answer:hover {
+  background: rgb(48, 48, 153);
+}
+
+.answer.active {
+  background: rgb(95, 105, 36);
+}
+
+.answer.correct {
+  animation: correct 3s ease forwards;
+}
+
+@keyframes correct {
+  0%,
+  22%,
+  42% {
+    background: mediumblue;
+  }
+  20%,
+  40%,
+  60% {
+    background: linear-gradient(#0e0124, #22074d);
+  }
+  62%,
+  100% {
+    background: green;
+  }
+}
+
+.answer.wrong {
+  animation: wrong 3s ease forwards;
+}
+
+@keyframes wrong {
+  0%,
+  22%,
+  42% {
+    background: mediumblue;
+  }
+  20%,
+  40%,
+  60% {
+    background: linear-gradient(#0e0124, #22074d);
+  }
+  62%,
+  100% {
+    background: crimson;
+  }
+}
