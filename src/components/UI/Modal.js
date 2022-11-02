@@ -13,8 +13,11 @@ const ModalOverlay = (props) => {
       <div className="content">
         {" "}
         <div className="container">
-          <h3>მზად ხართ თამაშის დასაწყებად ?</h3>
-          <button onClick={props.onClose}>დიახ</button>
+          <h3>{props.text}</h3>
+          <button onClick={props.onClose}>{props.button}</button>
+          {props.buttonEnd && (
+            <button onClick={props.onClose}>{props.buttonEnd}</button>
+          )}
         </div>
       </div>
     </div>
@@ -28,7 +31,14 @@ const Modal = (props) => {
     <Fragment>
       {ReactDOM.createPortal(<Backdrop />, portalElement)}
       {ReactDOM.createPortal(
-        <ModalOverlay onClose={props.onClose}>{props.children}</ModalOverlay>,
+        <ModalOverlay
+          onClose={props.onClose}
+          text={props.text}
+          button={props.button}
+          buttonEnd={props.buttonEnd}
+        >
+          {props.children}
+        </ModalOverlay>,
         portalElement
       )}
     </Fragment>
