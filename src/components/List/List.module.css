@@ -1,35 +1,40 @@
 .list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
   list-style: none;
   width: 100%;
   height: 100%;
   padding: 1.5rem;
 }
 
-.list-item {
-  width: 100%;
+.list-item,
+.list-active {
+  width: 70%;
   padding: 0.3em;
-  text-align: start;
+  display: flex;
+  justify-content: space-around;
   color: rgb(173, 101, 33);
   border-radius: 1.5em;
 }
 
 .list-active {
-  width: 100%;
-  padding: 0.3em;
-  text-align: start;
-  color: rgb(173, 101, 33);
-  border-radius: 1.5em;
   background-color: rgb(237, 129, 28);
   color: black;
   font-weight: bolder;
 }
 
 .item-number {
+  align-content: flex-start;
+  padding-left: 0.5em;
   font-size: 1.3rem;
   width: 30%;
 }
 
 .item-amount {
+  width: 70%;
+  text-align: left;
   font-size: 1.3rem;
   font-weight: 300;
 }

@@ -11,13 +11,12 @@ const Trivia = (props) => {
   const [pauseTimer, setPauseTimer] = useState(false);
   const [selectedClassName, setSelectedClassName] = useState(styles.answer);
   const { id, modalIsActive, stop, setStop, questionNumberHandler } = props;
-  const currentQuestion = data.find((question) => question.id === id);
 
-  console.log("Trivia render");
+  const currentQuestion = data.find((question) => question.id === id);
 
   useEffect(() => {
     setSelectedAnswer(null);
-    setCorrectAnswer(null);
+
     setPauseTimer(false);
     setSelectedClassName(styles.answer);
   }, [id]);
@@ -81,12 +80,6 @@ const Trivia = (props) => {
               );
             } else if (selectedAnswer !== answer.text && selectedAnswer) {
               return <Answer className={styles.blocked} text={answer.text} />;
-            } else if (
-              correctAnswer &&
-              correctAnswer.correct === answer.correct &&
-              selectedAnswer
-            ) {
-              return <Answer className={styles.correct} text={answer.text} />;
             } else {
               return (
                 <Answer
