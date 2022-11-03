@@ -5,5 +5,7 @@ export const calcWinEmount = (id, setEarnedMoney, finalAnswer) => {
     setEarnedMoney(32000);
   } else if (id === 15 && finalAnswer) {
     setEarnedMoney(1000000);
+  } else if (id === 15 && !finalAnswer) {
+    setEarnedMoney(32000);
   }
 };
