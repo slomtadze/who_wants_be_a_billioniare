@@ -8,7 +8,7 @@ const App = () => {
   const [questionNumber, setQuestionNumber] = useState(1);
   const [stop, setStop] = useState(false);
 
-  const [earnedMoney, setEarnedMoney] = useState("$ 0");
+  const [earnedMoney, setEarnedMoney] = useState(0);
   /* const [letsPlay] = useSound(play); */
   const [modalIsActive, setModalIsActive] = useState(true);
   const [endGameModal, setEndGameModal] = useState(false);
@@ -41,7 +41,7 @@ const App = () => {
   } else if (stop) {
     modal = (
       <Modal
-        title={`You have won ${earnedMoney} `}
+        title={`You have won $ ${earnedMoney} `}
         buttonText="Take another try"
         onGameStart={gameRestartHandler}
         buttonEndText="End Game"
@@ -60,6 +60,7 @@ const App = () => {
           <Trivia
             id={!modalIsActive && questionNumber}
             earnedMoney={earnedMoney}
+            setEarnedMoney={setEarnedMoney}
             modalIsActive={modalIsActive}
             stop={stop}
             setStop={setStop}
