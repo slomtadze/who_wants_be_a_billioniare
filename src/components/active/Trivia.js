@@ -20,11 +20,9 @@ const Trivia = (props) => {
   } = props;
   const currentQuestion = data.find((question) => question.id === id);
 
-  console.log("Trivia render");
-
   useEffect(() => {
     setSelectedAnswer(null);
-    setCorrectAnswer(null);
+
     setPauseTimer(false);
     setSelectedClassName(styles.answer)
     if(5< id && id < 11){
@@ -91,12 +89,6 @@ const Trivia = (props) => {
               );
             } else if (selectedAnswer !== answer.text && selectedAnswer) {
               return <Answer className={styles.blocked} text={answer.text} />;
-            } else if (
-              correctAnswer &&
-              correctAnswer.correct === answer.correct &&
-              selectedAnswer
-            ) {
-              return <Answer className={styles.correct} text={answer.text} />;
             } else {
               return (
                 <Answer
