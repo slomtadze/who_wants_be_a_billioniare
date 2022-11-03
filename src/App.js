@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import styles from "./App.module.css";
 import Trivia from "./components/active/Trivia";
+import Helps from "./components/Helps/Helps";
 import List from "./components/List/List";
 import Modal from "./components/UI/Modal";
 
@@ -68,6 +69,7 @@ const App = () => {
           />
         </div>
         <div className={styles["right-side"]}>
+          <Helps />
           <List number={questionNumber} />
         </div>
       </div>
