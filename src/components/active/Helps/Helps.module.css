@@ -19,14 +19,16 @@
   font-size: 1.5rem;
 }
 
-.help {
+.help,
+.used {
   border: 3px solid #fff;
   border-radius: 1.5rem;
   padding: 0.15em;
   width: 24%;
+  height: 2.2rem;
   text-align: center;
   margin: auto;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -34,4 +36,9 @@
   border: 3px solid gold;
   color: gold;
   padding: 0.1em;
+}
+.used {
+  border-color: red;
+  color: red;
+  cursor: not-allowed;
 }

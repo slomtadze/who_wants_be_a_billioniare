@@ -6,6 +6,11 @@ import List from "./components/List/List";
 import Modal from "./components/UI/Modal";
 
 const App = () => {
+  const [helpIsUsed, setHelpIsUsed] = useState({
+    fifty: false,
+    audience: false,
+    phoneCall: false,
+  });
   const [questionNumber, setQuestionNumber] = useState(1);
   const [stop, setStop] = useState(false);
 
@@ -69,7 +74,7 @@ const App = () => {
           />
         </div>
         <div className={styles["right-side"]}>
-          <Helps />
+          <Helps helpIsUsed={helpIsUsed} setHelpIsUsed={setHelpIsUsed} />
           <List number={questionNumber} />
         </div>
       </div>
