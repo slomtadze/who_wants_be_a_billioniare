@@ -22,12 +22,11 @@ const Trivia = (props) => {
 
   useEffect(() => {
     setSelectedAnswer(null);
-
     setPauseTimer(false);
-    setSelectedClassName(styles.answer)
-    if(5< id && id < 11){
-      setEarnedMoney(1000)
-    } 
+    setSelectedClassName(styles.answer);
+    if (5 < id && id < 11) {
+      setEarnedMoney(1000);
+    }
   }, [id]);
 
   const delay = (duration, callback) => {
