@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import styles from "./App.module.css";
 import Trivia from "./components/active/Trivia";
-import Helps from "./components/Helps/Helps";
+import Helps from "./components/active/Helps/Helps";
 import List from "./components/List/List";
 import Modal from "./components/UI/Modal";
 
