@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import Answer from "./Answer";
-
 import data from "../../assets/Data/DUMMY_QUESTIONS";
+import Answer from "./Answer";
+import manageQuestionData from "../../Helpers/manageQuestionData";
 import Timer from "../../Helpers/Timer";
 import styles from "./Trivia.module.css";
 
 const Trivia = (props) => {
+  const [questionText, setQuestionText] = useState("");
+  const [answers, setAnswers] = useState([{}, {}, {}, {}]);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [pauseTimer, setPauseTimer] = useState(false);
@@ -17,8 +19,14 @@ const Trivia = (props) => {
     setStop,
     questionNumberHandler,
     setEarnedMoney,
+    helpIsUsed,
   } = props;
-  const currentQuestion = data.find((question) => question.id === id);
+  console.log("Rerender Trivia");
+  console.log(answers);
+
+  useEffect(() => {
+    manageQuestionData(id, helpIsUsed.fifty, setQuestionText, setAnswers);
+  }, [id, helpIsUsed.fifty, setQuestionText, setAnswers]);
 
   useEffect(() => {
     setSelectedAnswer(null);
@@ -41,12 +49,8 @@ const Trivia = (props) => {
     setPauseTimer(true);
 
     delay(3000, () => {
-      const currentAnswer = currentQuestion.answers.find(
-        (item) => item.text === answer.text
-      );
-      const correctAnswer = currentQuestion.answers.find(
-        (item) => item.correct === true
-      );
+      const currentAnswer = answers.find((item) => item.text === answer.text);
+      const correctAnswer = answers.find((item) => item.correct === true);
       if (currentAnswer.correct) {
         setSelectedClassName(styles.correct);
         delay(1500, () => {
@@ -76,28 +80,23 @@ const Trivia = (props) => {
           />
         )}
       </div>
-      <div className={styles.question}>
-        {currentQuestion ? currentQuestion.question : ""}
-      </div>
+      <div className={styles.question}>{questionText}</div>
       <div className={styles.answers}>
-        {currentQuestion &&
-          currentQuestion.answers.map((answer) => {
-            if (selectedAnswer === answer.text) {
-              return (
-                <Answer className={selectedClassName} text={answer.text} />
-              );
-            } else if (selectedAnswer !== answer.text && selectedAnswer) {
-              return <Answer className={styles.blocked} text={answer.text} />;
-            } else {
-              return (
-                <Answer
-                  className={styles.answer}
-                  text={answer.text}
-                  onClick={() => onAnwerSelect(answer)}
-                />
-              );
-            }
-          })}
+        {answers.map((answer) => {
+          if (selectedAnswer === answer.text) {
+            return <Answer className={selectedClassName} text={answer.text} />;
+          } else if (selectedAnswer !== answer.text && selectedAnswer) {
+            return <Answer className={styles.blocked} text={answer.text} />;
+          } else {
+            return (
+              <Answer
+                className={styles.answer}
+                text={answer.text}
+                onClick={() => onAnwerSelect(answer)}
+              />
+            );
+          }
+        })}
       </div>
     </div>
   );

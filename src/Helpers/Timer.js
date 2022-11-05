@@ -18,7 +18,7 @@ export default function Timer(props) {
   }, [timer, stop, setStop, pauseTimer]);
 
   useEffect(() => {
-    setTimer(10);
+    setTimer(60);
   }, [questionNumber]);
   return timer;
 }

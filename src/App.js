@@ -71,6 +71,7 @@ const App = () => {
             stop={stop}
             setStop={setStop}
             questionNumberHandler={questionNumberHandler}
+            helpIsUsed={helpIsUsed}
           />
         </div>
         <div className={styles["right-side"]}>
