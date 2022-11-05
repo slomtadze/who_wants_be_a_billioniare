@@ -2,15 +2,26 @@ import styles from "./Helps.module.css";
 import { IoIosPeople } from "react-icons/io";
 import { FiPhoneCall } from "react-icons/fi";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import manageQuestionData from "../../../Helpers/manageQuestionData";
+import { setAnswersReducer } from "../../../Store/Question-slice";
 
 const Helps = (props) => {
   const { helpIsUsed, setHelpIsUsed } = props;
+  const { answers } = useSelector((state) => state.question);
+  const dispatch = useDispatch();
 
   const fiftyClickHanler = () => {
-    setHelpIsUsed((prev) => {
-      const existing = prev;
-      return { ...existing, fifty: true };
-    });
+    if (helpIsUsed.fifty) {
+      return;
+    } else {
+      setHelpIsUsed((prev) => {
+        const existing = prev;
+        return { ...existing, fifty: true };
+      });
+      const editedAnswers = manageQuestionData(answers);
+      dispatch(setAnswersReducer(editedAnswers));
+    }
   };
   const audienceClickHanler = () => {
     setHelpIsUsed((prev) => {

@@ -4,10 +4,16 @@ import Answer from "./Answer";
 import manageQuestionData from "../../Helpers/manageQuestionData";
 import Timer from "../../Helpers/Timer";
 import styles from "./Trivia.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setAnswersReducer,
+  setQuestionReducer,
+} from "../../Store/Question-slice";
 
 const Trivia = (props) => {
-  const [questionText, setQuestionText] = useState("");
-  const [answers, setAnswers] = useState([{}, {}, {}, {}]);
+  const { questionText, answers } = useSelector((state) => state.question);
+  const dispatch = useDispatch();
+
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [pauseTimer, setPauseTimer] = useState(false);
@@ -21,12 +27,18 @@ const Trivia = (props) => {
     setEarnedMoney,
     helpIsUsed,
   } = props;
-  console.log("Rerender Trivia");
-  console.log(answers);
 
   useEffect(() => {
+    if (id > 0) {
+      const currentQuestion = data.find((question) => question.id === id);
+      dispatch(setQuestionReducer(currentQuestion.question));
+      dispatch(setAnswersReducer(currentQuestion.answers));
+    }
+  }, [id]);
+
+  /* useEffect(() => {
     manageQuestionData(id, helpIsUsed.fifty, setQuestionText, setAnswers);
-  }, [id, helpIsUsed.fifty, setQuestionText, setAnswers]);
+  }, [id, helpIsUsed.fifty, setQuestionText, setAnswers]); */
 
   useEffect(() => {
     setSelectedAnswer(null);
