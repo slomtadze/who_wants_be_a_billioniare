@@ -8,7 +8,7 @@ import Modal from "./components/UI/Modal";
 const App = () => {
   const [helpIsUsed, setHelpIsUsed] = useState({
     fifty: false,
-    audience: false,
+    audience: { isUsed: false, isShown: false },
     phoneCall: false,
   });
   const [questionNumber, setQuestionNumber] = useState(1);
@@ -16,7 +16,7 @@ const App = () => {
 
   const [earnedMoney, setEarnedMoney] = useState(0);
   /* const [letsPlay] = useSound(play); */
-  const [modalIsActive, setModalIsActive] = useState(true);
+  const [modalIsActive, setModalIsActive] = useState(false);
   const [endGameModal, setEndGameModal] = useState(false);
 
   const gameStartHandler = () => {
@@ -32,6 +32,12 @@ const App = () => {
   };
   const questionNumberHandler = () => {
     setQuestionNumber((prev) => prev + 1);
+    if (helpIsUsed.audience.isShown) {
+      setHelpIsUsed((prev) => {
+        const existing = prev;
+        return { ...existing, audience: { isUsed: true, isShown: false } };
+      });
+    }
   };
 
   // Gasasworebelia end game

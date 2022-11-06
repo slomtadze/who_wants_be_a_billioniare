@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import data from "../../assets/Data/DUMMY_QUESTIONS";
 import Answer from "./Answer";
-import manageQuestionData from "../../Helpers/manageQuestionData";
 import Timer from "../../Helpers/Timer";
 import styles from "./Trivia.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +8,7 @@ import {
   setAnswersReducer,
   setQuestionReducer,
 } from "../../Store/Question-slice";
+import ChartBar from "../UI/Chart/Chart";
 
 const Trivia = (props) => {
   const { questionText, answers } = useSelector((state) => state.question);
@@ -35,10 +35,6 @@ const Trivia = (props) => {
       dispatch(setAnswersReducer(currentQuestion.answers));
     }
   }, [id]);
-
-  /* useEffect(() => {
-    manageQuestionData(id, helpIsUsed.fifty, setQuestionText, setAnswers);
-  }, [id, helpIsUsed.fifty, setQuestionText, setAnswers]); */
 
   useEffect(() => {
     setSelectedAnswer(null);
@@ -92,16 +88,30 @@ const Trivia = (props) => {
           />
         )}
       </div>
+      {helpIsUsed.audience.isShown && <ChartBar answers={answers} />}
       <div className={styles.question}>{questionText}</div>
       <div className={styles.answers}>
         {answers.map((answer) => {
           if (selectedAnswer === answer.text) {
-            return <Answer className={selectedClassName} text={answer.text} />;
+            return (
+              <Answer
+                key={answer.id}
+                className={selectedClassName}
+                text={answer.text}
+              />
+            );
           } else if (selectedAnswer !== answer.text && selectedAnswer) {
-            return <Answer className={styles.blocked} text={answer.text} />;
+            return (
+              <Answer
+                key={answer.id}
+                className={styles.blocked}
+                text={answer.text}
+              />
+            );
           } else {
             return (
               <Answer
+                key={answer.id}
                 className={styles.answer}
                 text={answer.text}
                 onClick={() => onAnwerSelect(answer)}

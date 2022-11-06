@@ -29,6 +29,7 @@ const List = (props) => {
     <ul className={styles.list}>
       {moneyPyramid.map((item) => (
         <li
+          key={item.id}
           className={
             number === item.id ? styles["list-active"] : styles["list-item"]
           }

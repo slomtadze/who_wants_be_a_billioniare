@@ -24,10 +24,14 @@ const Helps = (props) => {
     }
   };
   const audienceClickHanler = () => {
-    setHelpIsUsed((prev) => {
-      const existing = prev;
-      return { ...existing, audience: true };
-    });
+    if (helpIsUsed.audience.isUsed) {
+      return;
+    } else {
+      setHelpIsUsed((prev) => {
+        const existing = prev;
+        return { ...existing, audience: { isUsed: true, isShown: true } };
+      });
+    }
   };
   const phoneCallClickHanler = () => {
     setHelpIsUsed((prev) => {
@@ -45,7 +49,7 @@ const Helps = (props) => {
         50 : 50
       </div>
       <div
-        className={helpIsUsed.audience ? styles.used : styles.help}
+        className={helpIsUsed.audience.isUsed ? styles.used : styles.help}
         onClick={audienceClickHanler}
       >
         <IoIosPeople />
