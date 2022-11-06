@@ -13,9 +13,7 @@ import ChartBar from "../UI/Chart/Chart";
 const Trivia = (props) => {
   const { questionText, answers } = useSelector((state) => state.question);
   const dispatch = useDispatch();
-
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [correctAnswer, setCorrectAnswer] = useState(null);
   const [pauseTimer, setPauseTimer] = useState(false);
   const [selectedClassName, setSelectedClassName] = useState(styles.answer);
   const {
@@ -34,7 +32,7 @@ const Trivia = (props) => {
       dispatch(setQuestionReducer(currentQuestion.question));
       dispatch(setAnswersReducer(currentQuestion.answers));
     }
-  }, [id]);
+  }, [id, dispatch]);
 
   useEffect(() => {
     setSelectedAnswer(null);
@@ -43,7 +41,7 @@ const Trivia = (props) => {
     if (5 < id && id < 11) {
       setEarnedMoney(1000);
     }
-  }, [id]);
+  }, [id, setEarnedMoney]);
 
   const delay = (duration, callback) => {
     setTimeout(() => {
@@ -58,7 +56,6 @@ const Trivia = (props) => {
 
     delay(3000, () => {
       const currentAnswer = answers.find((item) => item.text === answer.text);
-      const correctAnswer = answers.find((item) => item.correct === true);
       if (currentAnswer.correct) {
         setSelectedClassName(styles.correct);
         delay(1500, () => {
@@ -68,7 +65,6 @@ const Trivia = (props) => {
         });
       } else if (!currentAnswer.correct) {
         setSelectedClassName(styles.wrong);
-        setCorrectAnswer(correctAnswer);
         setStop(true);
       }
     });

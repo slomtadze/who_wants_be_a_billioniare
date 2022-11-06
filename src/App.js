@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import styles from "./App.module.css";
 import Trivia from "./components/active/Trivia";
 import Helps from "./components/active/Helps/Helps";
@@ -17,7 +17,6 @@ const App = () => {
   const [earnedMoney, setEarnedMoney] = useState(0);
   /* const [letsPlay] = useSound(play); */
   const [modalIsActive, setModalIsActive] = useState(false);
-  const [endGameModal, setEndGameModal] = useState(false);
 
   const gameStartHandler = () => {
     setModalIsActive(false);
@@ -60,9 +59,9 @@ const App = () => {
         onButtonEnd={endGameEndHandler}
       />
     );
-  } else if (endGameModal) {
+  } /* else if (endGameModal) {
     modal = <Modal title="Thanks for play" />;
-  }
+  } */
 
   return (
     <Fragment>
