@@ -25,6 +25,7 @@ const App = () => {
     setModalIsActive((prev) => {
       return { ...prev, startGameModal: false };
     });
+    setQuestionNumber(1);
     setHelpIsUsed({
       fifty: false,
       audience: { isUsed: false, isShown: false },
