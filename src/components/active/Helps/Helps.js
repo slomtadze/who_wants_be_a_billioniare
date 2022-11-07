@@ -15,8 +15,7 @@ const Helps = (props) => {
       return;
     } else {
       setHelpIsUsed((prev) => {
-        const existing = prev;
-        return { ...existing, fifty: true };
+        return { ...prev, fifty: true };
       });
       const editedAnswers = manageQuestionData(answers);
       dispatch(setAnswersReducer(editedAnswers));
@@ -27,15 +26,13 @@ const Helps = (props) => {
       return;
     } else {
       setHelpIsUsed((prev) => {
-        const existing = prev;
-        return { ...existing, audience: { isUsed: true, isShown: true } };
+        return { ...prev, audience: { isUsed: true, isShown: true } };
       });
     }
   };
   const phoneCallClickHanler = () => {
     setHelpIsUsed((prev) => {
-      const existing = prev;
-      return { ...existing, phoneCall: true };
+      return { ...prev, phoneCall: { isUsed: true, isShown: true } };
     });
   };
 

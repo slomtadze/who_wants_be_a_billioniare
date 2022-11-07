@@ -15,7 +15,7 @@ const App = () => {
   const [helpIsUsed, setHelpIsUsed] = useState({
     fifty: false,
     audience: { isUsed: false, isShown: false },
-    phoneCall: false,
+    phoneCall: { isUsed: false, isShown: false },
   });
   const [questionNumber, setQuestionNumber] = useState(1);
   const [earnedMoney, setEarnedMoney] = useState(0);
@@ -89,8 +89,6 @@ const App = () => {
             setEarnedMoney={setEarnedMoney}
             modalIsActive={modalIsActive}
             setModalIsActive={setModalIsActive}
-            stop={stop}
-            setStop={setStop}
             questionNumberHandler={questionNumberHandler}
             helpIsUsed={helpIsUsed}
           />

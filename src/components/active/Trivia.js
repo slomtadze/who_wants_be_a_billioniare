@@ -19,8 +19,6 @@ const Trivia = (props) => {
   const {
     id,
     modalIsActive,
-    stop,
-    setStop,
     questionNumberHandler,
     setEarnedMoney,
     helpIsUsed,
@@ -80,8 +78,8 @@ const Trivia = (props) => {
           30
         ) : (
           <Timer
-            stop={stop}
-            setStop={setStop}
+            stopGameModal={modalIsActive.stopGameModal}
+            setModalIsActive={setModalIsActive}
             questionNumber={id}
             pauseTimer={pauseTimer}
           />
