@@ -1,10 +1,9 @@
 import styles from "./Helps.module.css";
-import { IoIosPeople } from "react-icons/io";
-import { FiPhoneCall } from "react-icons/fi";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import manageQuestionData from "../../../Helpers/manageQuestionData";
 import { setAnswersReducer } from "../../../Store/Question-slice";
+import { IoIosPeople } from "react-icons/io";
+import { FiPhoneCall } from "react-icons/fi";
 
 const Helps = (props) => {
   const { helpIsUsed, setHelpIsUsed } = props;

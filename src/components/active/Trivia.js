@@ -24,6 +24,7 @@ const Trivia = (props) => {
     questionNumberHandler,
     setEarnedMoney,
     helpIsUsed,
+    setModalIsActive,
   } = props;
 
   useEffect(() => {
@@ -65,7 +66,9 @@ const Trivia = (props) => {
         });
       } else if (!currentAnswer.correct) {
         setSelectedClassName(styles.wrong);
-        setStop(true);
+        setModalIsActive((prev) => {
+          return { ...prev, stopGameModal: true };
+        });
       }
     });
   };
@@ -73,7 +76,7 @@ const Trivia = (props) => {
   return (
     <div className={styles.trivia}>
       <div className={styles.timer}>
-        {modalIsActive ? (
+        {modalIsActive.startGameModal ? (
           30
         ) : (
           <Timer
