@@ -31,9 +31,13 @@ const Helps = (props) => {
     }
   };
   const phoneCallClickHanler = () => {
-    setHelpIsUsed((prev) => {
-      return { ...prev, phoneCall: { isUsed: true, isShown: true } };
-    });
+    if (helpIsUsed.phoneCall.isUsed) {
+      return;
+    } else {
+      setHelpIsUsed((prev) => {
+        return { ...prev, phoneCall: { isUsed: true, isShown: true } };
+      });
+    }
   };
 
   return (
@@ -51,7 +55,7 @@ const Helps = (props) => {
         <IoIosPeople />
       </div>
       <div
-        className={helpIsUsed.phoneCall ? styles.used : styles.help}
+        className={helpIsUsed.phoneCall.isUsed ? styles.used : styles.help}
         onClick={phoneCallClickHanler}
       >
         <FiPhoneCall />
