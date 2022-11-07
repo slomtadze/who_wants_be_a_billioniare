@@ -9,6 +9,7 @@ import {
   setQuestionReducer,
 } from "../../Store/Question-slice";
 import ChartBar from "../Chart/Chart";
+import PhoneCall from "../PhoneCall/PhoneCall";
 
 const Trivia = (props) => {
   const { questionText, answers } = useSelector((state) => state.question);
@@ -86,6 +87,9 @@ const Trivia = (props) => {
         )}
       </div>
       {helpIsUsed.audience.isShown && <ChartBar answers={answers} />}
+      {helpIsUsed.phoneCall.isShown && (
+        <PhoneCall answer={answers.find((answer) => answer.correct === true)} />
+      )}
       <div className={styles.question}>{questionText}</div>
       <div className={styles.answers}>
         {answers.map((answer) => {

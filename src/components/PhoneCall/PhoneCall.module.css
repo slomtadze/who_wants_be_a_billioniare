@@ -1,0 +1,22 @@
+.header {
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 1.5em 1em;
+  letter-spacing: 1px;
+}
+.icon {
+  font-size: 1.9rem;
+  margin-right: 1rem;
+}
+
+.answer {
+  letter-spacing: 1px;
+  line-height: 1.5rem;
+  font-size: 1rem;
+  margin-left: 1.5em;
+}
+span {
+  font-size: 1.1rem;
+  font-weight: bold;
+}

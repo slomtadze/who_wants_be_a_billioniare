@@ -11,7 +11,6 @@ const App = () => {
     stopGameModal: false,
     endGameModal: false,
   });
-  const [stop, setStop] = useState(false);
   const [helpIsUsed, setHelpIsUsed] = useState({
     fifty: false,
     audience: { isUsed: false, isShown: false },
@@ -29,7 +28,7 @@ const App = () => {
     setHelpIsUsed({
       fifty: false,
       audience: { isUsed: false, isShown: false },
-      phoneCall: false,
+      phoneCall: { isUsed: false, isShown: false },
     });
   };
   const gameRestartHandler = () => {
@@ -48,8 +47,11 @@ const App = () => {
     setQuestionNumber((prev) => prev + 1);
     if (helpIsUsed.audience.isShown) {
       setHelpIsUsed((prev) => {
-        const existing = prev;
-        return { ...existing, audience: { isUsed: true, isShown: false } };
+        return { ...prev, audience: { isUsed: true, isShown: false } };
+      });
+    } else if (helpIsUsed.phoneCall.isShown) {
+      setHelpIsUsed((prev) => {
+        return { ...prev, phoneCall: { isUsed: true, isShown: false } };
       });
     }
   };
