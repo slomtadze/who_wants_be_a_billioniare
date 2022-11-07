@@ -6,28 +6,42 @@ import List from "./components/List/List";
 import Modal from "./components/UI/Modal";
 
 const App = () => {
+  const [modalIsActive, setModalIsActive] = useState({
+    startGameModal: true,
+    stopGameModal: false,
+    endGameModal: false,
+  });
+  const [stop, setStop] = useState(false);
   const [helpIsUsed, setHelpIsUsed] = useState({
     fifty: false,
     audience: { isUsed: false, isShown: false },
     phoneCall: false,
   });
   const [questionNumber, setQuestionNumber] = useState(1);
-  const [stop, setStop] = useState(false);
-
   const [earnedMoney, setEarnedMoney] = useState(0);
   /* const [letsPlay] = useSound(play); */
-  const [modalIsActive, setModalIsActive] = useState(false);
 
   const gameStartHandler = () => {
-    setModalIsActive(false);
+    setModalIsActive((prev) => {
+      return { ...prev, startGameModal: false };
+    });
+    setHelpIsUsed({
+      fifty: false,
+      audience: { isUsed: false, isShown: false },
+      phoneCall: false,
+    });
   };
   const gameRestartHandler = () => {
-    setStop(false);
-    setModalIsActive(true);
-    setQuestionNumber(1);
+    setModalIsActive((prev) => {
+      return { ...prev, startGameModal: true, stopGameModal: false };
+    });
   };
   const endGameEndHandler = () => {
-    setStop(false);
+    setModalIsActive({
+      startGameModal: false,
+      stopGameModal: false,
+      endGameModal: true,
+    });
   };
   const questionNumberHandler = () => {
     setQuestionNumber((prev) => prev + 1);
@@ -41,7 +55,7 @@ const App = () => {
 
   // Gasasworebelia end game
   let modal;
-  if (modalIsActive) {
+  if (modalIsActive.startGameModal) {
     modal = (
       <Modal
         onGameStart={gameStartHandler}
@@ -49,7 +63,7 @@ const App = () => {
         buttonText="Let's do it"
       />
     );
-  } else if (stop) {
+  } else if (modalIsActive.stopGameModal) {
     modal = (
       <Modal
         title={`You have won $ ${earnedMoney} `}
@@ -59,9 +73,9 @@ const App = () => {
         onButtonEnd={endGameEndHandler}
       />
     );
-  } /* else if (endGameModal) {
+  } else if (modalIsActive.endGameModal) {
     modal = <Modal title="Thanks for play" />;
-  } */
+  }
 
   return (
     <Fragment>
@@ -69,10 +83,11 @@ const App = () => {
       <div className={styles.box}>
         <div className={styles["left-side"]}>
           <Trivia
-            id={!modalIsActive && questionNumber}
+            id={!modalIsActive.startGameModal && questionNumber}
             earnedMoney={earnedMoney}
             setEarnedMoney={setEarnedMoney}
             modalIsActive={modalIsActive}
+            setModalIsActive={setModalIsActive}
             stop={stop}
             setStop={setStop}
             questionNumberHandler={questionNumberHandler}
