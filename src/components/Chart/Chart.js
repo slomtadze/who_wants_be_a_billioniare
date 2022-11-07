@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { calcAudienceHelpPercentage } from "../../../Helpers/calcAudienceHelpPecrentage";
+import ChartWrapper from "../UI/ChartWrapper";
+import { calcAudienceHelpPercentage } from "../../Helpers/calcAudienceHelpPecrentage";
 import { Chart, registerables } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import styles from "./Chart.module.css";
@@ -26,9 +27,9 @@ const ChartBar = (props) => {
   };
 
   return (
-    <div className={styles["chart_box"]}>
+    <ChartWrapper>
       <Bar data={chartData} />
-    </div>
+    </ChartWrapper>
   );
 };
 

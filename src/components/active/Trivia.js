@@ -8,7 +8,7 @@ import {
   setAnswersReducer,
   setQuestionReducer,
 } from "../../Store/Question-slice";
-import ChartBar from "../UI/Chart/Chart";
+import ChartBar from "../Chart/Chart";
 
 const Trivia = (props) => {
   const { questionText, answers } = useSelector((state) => state.question);
