@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: space-around;
   position: relative;
-  border: 1px solid red;
 }
 
 .timer {
@@ -37,6 +36,7 @@
 
 .answers {
   width: 100%;
+  min-height: 100px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -73,6 +73,7 @@
 }
 .blocked {
   cursor: auto;
+  pointer-events: none;
 }
 
 .answer:hover {

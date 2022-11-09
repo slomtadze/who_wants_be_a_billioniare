@@ -15,6 +15,7 @@ const Trivia = (props) => {
   const { questionText, answers } = useSelector((state) => state.question);
   const dispatch = useDispatch();
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [correctAnswerIsShown, setCorrectAnswerIsShown] = useState(false);
   const [pauseTimer, setPauseTimer] = useState(false);
   const [selectedClassName, setSelectedClassName] = useState(styles.answer);
   const {
@@ -65,11 +66,33 @@ const Trivia = (props) => {
         });
       } else if (!currentAnswer.correct) {
         setSelectedClassName(styles.wrong);
+        setCorrectAnswerIsShown(true);
         setModalIsActive((prev) => {
           return { ...prev, stopGameModal: true };
         });
       }
     });
+  };
+
+  const answerStyle = (answer) => {
+    if (selectedAnswer === answer.text) {
+      return selectedClassName;
+    } else if (
+      selectedAnswer !== answer.text &&
+      selectedAnswer &&
+      !correctAnswerIsShown
+    ) {
+      return styles.blocked;
+    } else if (
+      selectedAnswer !== answer.text &&
+      selectedAnswer &&
+      correctAnswerIsShown &&
+      answer.correct
+    ) {
+      return styles.correct;
+    } else {
+      return styles.answer;
+    }
   };
 
   return (
@@ -93,32 +116,14 @@ const Trivia = (props) => {
       <div className={styles.question}>{questionText}</div>
       <div className={styles.answers}>
         {answers.map((answer) => {
-          if (selectedAnswer === answer.text) {
-            return (
-              <Answer
-                key={answer.id}
-                className={selectedClassName}
-                text={answer.text}
-              />
-            );
-          } else if (selectedAnswer !== answer.text && selectedAnswer) {
-            return (
-              <Answer
-                key={answer.id}
-                className={styles.blocked}
-                text={answer.text}
-              />
-            );
-          } else {
-            return (
-              <Answer
-                key={answer.id}
-                className={styles.answer}
-                text={answer.text}
-                onClick={() => onAnwerSelect(answer)}
-              />
-            );
-          }
+          return (
+            <Answer
+              key={answer.id}
+              className={answerStyle(answer)}
+              text={answer.text}
+              onClick={() => onAnwerSelect(answer)}
+            />
+          );
         })}
       </div>
     </div>

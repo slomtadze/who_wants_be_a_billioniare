@@ -4,15 +4,12 @@ import styles from "./PhoneCall.module.css";
 import { useEffect, useState } from "react";
 
 const PhoneCall = (props) => {
-  
   const { text } = props.answer;
   const [correctAnswer, setCorrectAnswer] = useState("");
 
-  
-
   useEffect(() => {
     setTimeout(() => {
-      setCorrectAnswer(text);
+      setCorrectAnswer(`Friend say's correct answer is: ${text}`);
     }, 3000);
   }, []);
 
@@ -24,7 +21,8 @@ const PhoneCall = (props) => {
       </div>
       <div>
         <p className={styles.answer}>
-          Friend say's correct answer is: <br /> <span>{correctAnswer}</span>
+          {correctAnswer}
+          {/* Friend say's correct answer is: <br /> <span>{correctAnswer}</span> */}
         </p>
       </div>
     </ChartWrapper>
