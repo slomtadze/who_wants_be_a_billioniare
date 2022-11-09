@@ -8,6 +8,7 @@ import {
   setAnswersReducer,
   setQuestionReducer,
 } from "../../Store/Question-slice";
+import { calcWinEmount } from "../../Helpers/calcWinEmount";
 import ChartBar from "../Chart/Chart";
 import PhoneCall from "../PhoneCall/PhoneCall";
 
@@ -39,10 +40,7 @@ const Trivia = (props) => {
     setSelectedAnswer(null);
     setPauseTimer(false);
     setSelectedClassName(styles.answer);
-    if (5 < id && id < 11) {
-      setEarnedMoney(1000);
-    }
-  }, [id, setEarnedMoney]);
+  }, [id]);
 
   const delay = (duration, callback) => {
     setTimeout(() => {
@@ -67,6 +65,7 @@ const Trivia = (props) => {
       } else if (!currentAnswer.correct) {
         setSelectedClassName(styles.wrong);
         setCorrectAnswerIsShown(true);
+        calcWinEmount(id, setEarnedMoney);
         setModalIsActive((prev) => {
           return { ...prev, stopGameModal: true };
         });
