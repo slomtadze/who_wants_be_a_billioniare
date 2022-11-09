@@ -1,4 +1,6 @@
 import React, { Fragment, useState } from "react";
+import useSound from "use-sound";
+import startSound from "../src/assets/sounds/play.mp3";
 import styles from "./App.module.css";
 import Trivia from "./components/active/Trivia";
 import Helps from "./components/active/Helps/Helps";
@@ -18,9 +20,10 @@ const App = () => {
   });
   const [questionNumber, setQuestionNumber] = useState(1);
   const [earnedMoney, setEarnedMoney] = useState(0);
-  /* const [letsPlay] = useSound(play); */
+  const [startGameSound] = useSound(startSound);
 
   const gameStartHandler = () => {
+    startGameSound();
     setModalIsActive((prev) => {
       return { ...prev, startGameModal: false };
     });
