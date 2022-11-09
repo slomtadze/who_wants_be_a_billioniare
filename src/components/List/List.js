@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import ListItem from "./ListItem";
 
 import styles from "./List.module.css";
 
@@ -27,17 +28,18 @@ const List = (props) => {
   );
   return (
     <ul className={styles.list}>
-      {moneyPyramid.map((item) => (
-        <li
-          key={item.id}
-          className={
-            number === item.id ? styles["list-active"] : styles["list-item"]
-          }
-        >
-          <span className={styles["item-number"]}>{item.id}</span>
-          <span className={styles["item-amount"]}>{item.amount}</span>
-        </li>
-      ))}
+      {moneyPyramid.map((item) => {
+        return (
+          <ListItem
+            key={item.id}
+            id={item.id}
+            style={
+              number === item.id ? styles["list-active"] : styles["list-item"]
+            }
+            amount={item.amount}
+          />
+        );
+      })}
     </ul>
   );
 };
