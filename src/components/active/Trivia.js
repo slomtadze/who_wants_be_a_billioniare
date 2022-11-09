@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import useSound from "use-sound";
+import waitSound from "../../assets/sounds/wait.mp3";
+import correctSound from "../../assets/sounds/correct.mp3";
+import wrongSound from "../../assets/sounds/wrong.mp3";
 import data from "../../assets/Data/DUMMY_QUESTIONS";
 import Answer from "./Answer";
 import Timer from "../../Helpers/Timer";
@@ -28,6 +32,10 @@ const Trivia = (props) => {
     setModalIsActive,
   } = props;
 
+  const [wait] = useSound(waitSound);
+  const [correct] = useSound(correctSound);
+  const [wrong] = useSound(wrongSound);
+
   useEffect(() => {
     if (id > 0) {
       const currentQuestion = data.find((question) => question.id === id);
@@ -40,6 +48,7 @@ const Trivia = (props) => {
     setSelectedAnswer(null);
     setPauseTimer(false);
     setSelectedClassName(styles.answer);
+    setCorrectAnswerIsShown(false);
   }, [id]);
 
   const delay = (duration, callback) => {
@@ -49,6 +58,7 @@ const Trivia = (props) => {
   };
 
   const onAnwerSelect = (answer) => {
+    wait();
     setSelectedAnswer(answer.text);
     setSelectedClassName(styles.selected);
     setPauseTimer(true);
@@ -56,6 +66,7 @@ const Trivia = (props) => {
     delay(3000, () => {
       const currentAnswer = answers.find((item) => item.text === answer.text);
       if (currentAnswer.correct) {
+        correct();
         setSelectedClassName(styles.correct);
         delay(1500, () => {
           questionNumberHandler();
@@ -63,6 +74,7 @@ const Trivia = (props) => {
           setPauseTimer(false);
         });
       } else if (!currentAnswer.correct) {
+        wrong();
         setSelectedClassName(styles.wrong);
         setCorrectAnswerIsShown(true);
         calcWinEmount(id, setEarnedMoney);
