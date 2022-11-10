@@ -43,9 +43,9 @@ const Trivia = (props) => {
       dispatch(setAnswersReducer(currentQuestion.answers));
     }
     setSelectedAnswer(null);
-    setPauseTimer(false);
     setSelectedClassName(styles.answer);
     setCorrectAnswerIsShown(false);
+    setPauseTimer(false);
   }, [id, dispatch]);
 
   const delay = useCallback((duration, callback) => {
