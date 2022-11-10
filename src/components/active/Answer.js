@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { calcWinEmount } from "../../Helpers/calcWinEmount";
-//import useSound from "use-sound";
-//import waitSound from "../../assets/sounds/wait.mp3";
-//import correctSound from "../../assets/sounds/correct.mp3";
-//import wrongSound from "../../assets/sounds/wrong.mp3";
+import useSound from "use-sound";
+import waitSound from "../../assets/sounds/wait.mp3";
+import correctSound from "../../assets/sounds/correct.mp3";
+import wrongSound from "../../assets/sounds/wrong.mp3";
 import styles from "./Answer.module.css";
 
 const Answer = React.memo((props) => {
@@ -19,7 +19,7 @@ const Answer = React.memo((props) => {
   } = props;
   console.log(id, "render", selectedClassName);
 
-  /*   const [wait] = useMemo(() => useSound(waitSound), []);
+ /*  const [wait] = useSound(waitSound);
   const [correct] = useSound(correctSound);
   const [wrong] = useSound(wrongSound); */
 
@@ -27,6 +27,8 @@ const Answer = React.memo((props) => {
     setSelectedClassName(styles.answer);
     setPauseTimer(false);
   }, [id]);
+  
+  
 
   const delay = useCallback((duration, callback) => {
     setTimeout(() => {
@@ -50,7 +52,6 @@ const Answer = React.memo((props) => {
       } else if (!isCorrect) {
         //wrong();
         setSelectedClassName(styles.wrong);
-
         calcWinEmount(id, setEarnedMoney);
         setModalIsActive((prev) => {
           return { ...prev, stopGameModal: true };
