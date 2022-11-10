@@ -1,6 +1,8 @@
+import React from "react";
 import styles from "./Answer.module.css";
 
-const Answer = (props) => {
+const Answer = React.memo((props) => {
+  console.log("Answer Render");
   const onClickHandler = (answer) => {
     props.onClick(answer);
   };
@@ -10,6 +12,6 @@ const Answer = (props) => {
       {props.text}
     </div>
   );
-};
+});
 
 export default Answer;
