@@ -20,7 +20,11 @@ const App = () => {
   });
   const [questionNumber, setQuestionNumber] = useState(1);
   const [earnedMoney, setEarnedMoney] = useState(0);
-  const [startGameSound] = useSound(startSound);
+  const [playbackRate, setPlaybackRate] = React.useState(1.5);
+  const [startGameSound] = useSound(startSound, {
+    playbackRate,
+    interrupt: true,
+  });
 
   const gameStartHandler = () => {
     startGameSound();
