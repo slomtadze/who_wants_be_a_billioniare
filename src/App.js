@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useCallback, useState } from "react";
 import useSound from "use-sound";
 import startSound from "../src/assets/sounds/play.mp3";
 import styles from "./App.module.css";
@@ -50,7 +50,7 @@ const App = () => {
       endGameModal: true,
     });
   };
-  const questionNumberHandler = () => {
+  const questionNumberHandler = useCallback(() => {
     setQuestionNumber((prev) => prev + 1);
     if (helpIsUsed.audience.isShown) {
       setHelpIsUsed((prev) => {
@@ -61,7 +61,7 @@ const App = () => {
         return { ...prev, phoneCall: { isUsed: true, isShown: false } };
       });
     }
-  };
+  }, [helpIsUsed.audience.isShown, helpIsUsed.phoneCall.isShown]);
 
   // Gasasworebelia end game
   let modal;
