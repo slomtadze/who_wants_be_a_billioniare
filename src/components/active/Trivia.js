@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useSound from "use-sound";
 import waitSound from "../../assets/sounds/wait.mp3";
 import correctSound from "../../assets/sounds/correct.mp3";
@@ -42,69 +42,73 @@ const Trivia = (props) => {
       dispatch(setQuestionReducer(currentQuestion.question));
       dispatch(setAnswersReducer(currentQuestion.answers));
     }
-  }, [id, dispatch]);
-
-  useEffect(() => {
     setSelectedAnswer(null);
     setPauseTimer(false);
     setSelectedClassName(styles.answer);
     setCorrectAnswerIsShown(false);
-  }, [id]);
+  }, [id, dispatch]);
 
-  const delay = (duration, callback) => {
+  const delay = useCallback((duration, callback) => {
     setTimeout(() => {
       callback();
     }, duration);
-  };
+  }, []);
 
-  const onAnwerSelect = (answer) => {
-    wait();
-    setSelectedAnswer(answer.text);
-    setSelectedClassName(styles.selected);
-    setPauseTimer(true);
+  const onAnwerSelect = useCallback(
+    (answer) => {
+      wait();
+      setSelectedAnswer(answer.text);
+      setSelectedClassName(styles.selected);
+      setPauseTimer(true);
 
-    delay(3000, () => {
-      const currentAnswer = answers.find((item) => item.text === answer.text);
-      if (currentAnswer.correct) {
-        correct();
-        setSelectedClassName(styles.correct);
-        delay(1500, () => {
-          questionNumberHandler();
-          setSelectedAnswer(null);
-          setPauseTimer(false);
-        });
-      } else if (!currentAnswer.correct) {
-        wrong();
-        setSelectedClassName(styles.wrong);
-        setCorrectAnswerIsShown(true);
-        calcWinEmount(id, setEarnedMoney);
-        setModalIsActive((prev) => {
-          return { ...prev, stopGameModal: true };
-        });
+      delay(3000, () => {
+        const currentAnswer = answers.find((item) => item.text === answer.text);
+        if (currentAnswer.correct) {
+          console.log(currentAnswer);
+          correct();
+          setSelectedClassName(styles.correct);
+          delay(1500, () => {
+            questionNumberHandler();
+            setSelectedAnswer(null);
+            setPauseTimer(false);
+          });
+        } else if (!currentAnswer.correct) {
+          wrong();
+          setSelectedClassName(styles.wrong);
+          setCorrectAnswerIsShown(true);
+          calcWinEmount(id, setEarnedMoney);
+          setModalIsActive((prev) => {
+            return { ...prev, stopGameModal: true };
+          });
+        }
+      });
+    },
+    [answers]
+  );
+
+  const answerStyle = useCallback(
+    (answer) => {
+      if (selectedAnswer === answer.text) {
+        return selectedClassName;
+      } else if (
+        selectedAnswer !== answer.text &&
+        selectedAnswer &&
+        !correctAnswerIsShown
+      ) {
+        return styles.blocked;
+      } else if (
+        selectedAnswer !== answer.text &&
+        selectedAnswer &&
+        correctAnswerIsShown &&
+        answer.correct
+      ) {
+        return styles.correct;
+      } else {
+        return styles.answer;
       }
-    });
-  };
-
-  const answerStyle = (answer) => {
-    if (selectedAnswer === answer.text) {
-      return selectedClassName;
-    } else if (
-      selectedAnswer !== answer.text &&
-      selectedAnswer &&
-      !correctAnswerIsShown
-    ) {
-      return styles.blocked;
-    } else if (
-      selectedAnswer !== answer.text &&
-      selectedAnswer &&
-      correctAnswerIsShown &&
-      answer.correct
-    ) {
-      return styles.correct;
-    } else {
-      return styles.answer;
-    }
-  };
+    },
+    [selectedAnswer, correctAnswerIsShown, selectedClassName]
+  );
 
   return (
     <div className={styles.trivia}>
