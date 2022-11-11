@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { calcWinEmount } from "../../Helpers/calcWinEmount";
 import { motion } from "framer-motion";
-import useSound from "use-sound";
-import waitSound from "../../assets/sounds/wait.mp3";
-import correctSound from "../../assets/sounds/correct.mp3";
-import wrongSound from "../../assets/sounds/wrong.mp3";
+//import useSound from "use-sound";
+//import sounds from "../../assets/sounds/sounds.mp3";
+
 import styles from "./Answer.module.css";
 
 const Answer = React.memo((props) => {
@@ -23,33 +22,18 @@ const Answer = React.memo((props) => {
     questionNumberHandler,
     setEarnedMoney,
   } = props;
-  /*   const correctAnswerAnimation = useMemo(() => {
-    return {
-      background: [
-        "#1eba20",
-        "#060116",
-        "#1eba20",
-        "#060116",
-        "#1eba20",
-        "#060116",
-        "#1eba20",
-      ],
-    };
-  }, []); */
 
-  /*  const [wait] = useSound(waitSound);
-  const [correct] = useSound(correctSound);
-  const [wrong] = useSound(wrongSound); */
-
-  /* useEffect(() => {
-    if (selectedAnswer && selectedAnswer !== props.text) {
-      setClassName(styles.blocked);
-    }
-  }, [selectedAnswer, props.text]); */
+  /*   const [play, { stop }] = useSound(sounds, {
+    sprite: {
+      wait: [0, 3000],
+      correct: [17000, 3000],
+      wrong: [24000, 3000],
+    },
+  }); */
 
   useEffect(() => {
     setCorrectAnswerIsShown(false);
-    //  setAnimation(undefined);
+
     if (selectedAnswer && selectedAnswer !== props.text) {
       setClassName(styles.blocked);
     } else if (selectedAnswer && selectedAnswer === props.text) {
@@ -57,9 +41,7 @@ const Answer = React.memo((props) => {
     } else {
       setClassName(styles.answer);
     }
-
-    setPauseTimer(false);
-  }, [id, setCorrectAnswerIsShown, setPauseTimer, selectedAnswer, props.text]);
+  }, [id, setCorrectAnswerIsShown, selectedAnswer, props.text]);
 
   const delay = useCallback((duration, callback) => {
     setTimeout(() => {
@@ -68,23 +50,23 @@ const Answer = React.memo((props) => {
   }, []);
 
   const onClickHandler = (isCorrect, text) => {
-    //wait();
+    // play({ id: "wait" });
     setSelectedAnswer(text);
     setClassName(styles.selected);
     setPauseTimer(true);
 
     delay(3000, () => {
       if (isCorrect) {
-        //correct();
+        //   play({ id: "correct" });
         setClassName(styles.correct);
-        // setAnimation(correctAnswerAnimation);
+
         delay(1500, () => {
           setSelectedAnswer(null);
           questionNumberHandler();
           setPauseTimer(false);
         });
       } else if (!isCorrect) {
-        //wrong();
+        //  play({ id: "wrong" });
         setClassName(styles.wrong);
         setCorrectAnswerIsShown(true);
         calcWinEmount(id, setEarnedMoney);

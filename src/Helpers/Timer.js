@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function Timer(props) {
-  const { stopGameModal, setModalIsActive, questionNumber, pauseTimer } = props;
+  const { setModalIsActive, questionNumber, pauseTimer } = props;
   const [timer, setTimer] = useState(10);
 
   useEffect(() => {

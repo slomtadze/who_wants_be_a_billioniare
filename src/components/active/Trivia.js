@@ -36,7 +36,6 @@ const Trivia = (props) => {
       dispatch(setQuestionReducer(currentQuestion.question));
       dispatch(setAnswersReducer(currentQuestion.answers));
     }
-    setPauseTimer(false);
   }, [id, dispatch]);
 
   return (
