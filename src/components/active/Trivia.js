@@ -14,6 +14,7 @@ import PhoneCall from "../PhoneCall/PhoneCall";
 const Trivia = (props) => {
   const { questionText, answers } = useSelector((state) => state.question);
   const [pauseTimer, setPauseTimer] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [correctAnswerIsShown, setCorrectAnswerIsShown] = useState(false);
   const dispatch = useDispatch();
   const {
@@ -24,6 +25,10 @@ const Trivia = (props) => {
     helpIsUsed,
     setModalIsActive,
   } = props;
+
+  useEffect(() => {
+    setSelectedAnswer(null);
+  }, [modalIsActive.startGameModal]);
 
   useEffect(() => {
     if (id > 0) {
@@ -61,6 +66,8 @@ const Trivia = (props) => {
               isCorrect={answer.correct}
               text={answer.text}
               id={id}
+              selectedAnswer={selectedAnswer}
+              setSelectedAnswer={setSelectedAnswer}
               correctAnswerIsShown={correctAnswerIsShown}
               setCorrectAnswerIsShown={setCorrectAnswerIsShown}
               setModalIsActive={setModalIsActive}
