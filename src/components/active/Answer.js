@@ -7,11 +7,13 @@ import wrongSound from "../../assets/sounds/wrong.mp3";
 import styles from "./Answer.module.css";
 
 const Answer = React.memo((props) => {
-  const [selectedClassName, setSelectedClassName] = useState(styles.answer);
+  const [className, setClassName] = useState(styles.answer);
 
   const {
     id,
     isCorrect,
+    correctAnswerIsShown,
+    setCorrectAnswerIsShown,
     setModalIsActive,
     setPauseTimer,
     questionNumberHandler,
@@ -23,7 +25,8 @@ const Answer = React.memo((props) => {
   const [wrong] = useSound(wrongSound); */
 
   useEffect(() => {
-    setSelectedClassName(styles.answer);
+    setCorrectAnswerIsShown(false);
+    setClassName(styles.answer);
     setPauseTimer(false);
   }, [id]);
 
@@ -35,20 +38,21 @@ const Answer = React.memo((props) => {
 
   const onClickHandler = (isCorrect) => {
     //wait();
-    setSelectedClassName(styles.selected);
+    setClassName(styles.selected);
     setPauseTimer(true);
 
     delay(3000, () => {
       if (isCorrect) {
         //correct();
-        setSelectedClassName(styles.correct);
+        setClassName(styles.correct);
         delay(1500, () => {
           questionNumberHandler();
           setPauseTimer(false);
         });
       } else if (!isCorrect) {
         //wrong();
-        setSelectedClassName(styles.wrong);
+        setClassName(styles.wrong);
+        setCorrectAnswerIsShown(true);
         calcWinEmount(id, setEarnedMoney);
         setModalIsActive((prev) => {
           return { ...prev, stopGameModal: true };
@@ -59,7 +63,7 @@ const Answer = React.memo((props) => {
 
   return (
     <div
-      className={selectedClassName}
+      className={correctAnswerIsShown && isCorrect ? styles.correct : className}
       onClick={() => onClickHandler(isCorrect, props.text)}
     >
       {props.text}
