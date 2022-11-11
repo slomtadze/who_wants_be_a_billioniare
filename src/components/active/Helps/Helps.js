@@ -11,6 +11,7 @@ import styles from "./Helps.module.css";
 const Helps = (props) => {
   const { helpIsUsed, setHelpIsUsed } = props;
   const { answers } = useSelector((state) => state.question);
+
   const dispatch = useDispatch();
   const peopleIcon = useMemo(() => {
     return <IoIosPeople />;
@@ -19,7 +20,7 @@ const Helps = (props) => {
     return <FiPhoneCall />;
   }, []);
 
-  const fiftyClickHanler = useCallback(() => {
+  const fiftyClickHanler = useCallback((answers) => {
     if (helpIsUsed.fifty) {
       return;
     } else {
@@ -54,7 +55,7 @@ const Helps = (props) => {
       <Help
         content="50 : 50"
         style={helpIsUsed.fifty ? styles.used : styles.help}
-        onClick={fiftyClickHanler}
+        onClick={() => fiftyClickHanler(answers)}
       />
       <Help
         content={peopleIcon}

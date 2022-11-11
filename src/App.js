@@ -27,7 +27,7 @@ const App = () => {
   });
 
   const gameStartHandler = () => {
-    startGameSound();
+    //startGameSound();
     setModalIsActive((prev) => {
       return { ...prev, startGameModal: false };
     });

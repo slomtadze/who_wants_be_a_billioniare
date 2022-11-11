@@ -17,9 +17,8 @@ const Answer = React.memo((props) => {
     questionNumberHandler,
     setEarnedMoney,
   } = props;
-  console.log(id, "render", selectedClassName);
 
- /*  const [wait] = useSound(waitSound);
+  /*  const [wait] = useSound(waitSound);
   const [correct] = useSound(correctSound);
   const [wrong] = useSound(wrongSound); */
 
@@ -27,8 +26,6 @@ const Answer = React.memo((props) => {
     setSelectedClassName(styles.answer);
     setPauseTimer(false);
   }, [id]);
-  
-  
 
   const delay = useCallback((duration, callback) => {
     setTimeout(() => {

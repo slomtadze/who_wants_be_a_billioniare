@@ -13,7 +13,6 @@ const manageQuestionData = (answers) => {
   const falseAnswerRndmIndex =
     falseAnswerRndmIndexesArray[Math.floor(Math.random() * 3)];
 
-  console.log(falseAnswerRndmIndex);
   const randomFalseAnswer = answers[falseAnswerRndmIndex];
 
   const newArray = answers.map((item, index) => {

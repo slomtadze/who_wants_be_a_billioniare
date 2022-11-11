@@ -33,7 +33,7 @@ const Trivia = (props) => {
       dispatch(setAnswersReducer(currentQuestion.answers));
     }
     setPauseTimer(false);
-  }, [id, dispatch]);
+  }, [id, answers, dispatch]);
 
   return (
     <div className={styles.trivia}>
@@ -60,14 +60,12 @@ const Trivia = (props) => {
             <Answer
               key={answer.id}
               isCorrect={answer.correct}
-              //className={answerStyle(answer)}
               text={answer.text}
               id={id}
               setModalIsActive={setModalIsActive}
               setEarnedMoney={setEarnedMoney}
               setPauseTimer={setPauseTimer}
               questionNumberHandler={questionNumberHandler}
-              //onClick={() => onAnwerSelect(answer)}
             />
           );
         })}
