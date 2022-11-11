@@ -32,8 +32,9 @@ const Trivia = (props) => {
       dispatch(setQuestionReducer(currentQuestion.question));
       dispatch(setAnswersReducer(currentQuestion.answers));
     }
+    console.log(answers);
     setPauseTimer(false);
-  }, [id, answers, dispatch]);
+  }, [id, dispatch]);
 
   return (
     <div className={styles.trivia}>
