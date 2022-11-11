@@ -13,10 +13,9 @@ import PhoneCall from "../PhoneCall/PhoneCall";
 
 const Trivia = (props) => {
   const { questionText, answers } = useSelector((state) => state.question);
-  const dispatch = useDispatch();
-
   const [pauseTimer, setPauseTimer] = useState(false);
-
+  const [correctAnswerIsShown, setCorrectAnswerIsShown] = useState(false);
+  const dispatch = useDispatch();
   const {
     id,
     modalIsActive,
@@ -32,7 +31,6 @@ const Trivia = (props) => {
       dispatch(setQuestionReducer(currentQuestion.question));
       dispatch(setAnswersReducer(currentQuestion.answers));
     }
-    console.log(answers);
     setPauseTimer(false);
   }, [id, dispatch]);
 
@@ -63,6 +61,8 @@ const Trivia = (props) => {
               isCorrect={answer.correct}
               text={answer.text}
               id={id}
+              correctAnswerIsShown={correctAnswerIsShown}
+              setCorrectAnswerIsShown={setCorrectAnswerIsShown}
               setModalIsActive={setModalIsActive}
               setEarnedMoney={setEarnedMoney}
               setPauseTimer={setPauseTimer}
