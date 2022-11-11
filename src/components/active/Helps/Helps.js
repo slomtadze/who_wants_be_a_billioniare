@@ -20,17 +20,20 @@ const Helps = (props) => {
     return <FiPhoneCall />;
   }, []);
 
-  const fiftyClickHanler = useCallback((answers) => {
-    if (helpIsUsed.fifty) {
-      return;
-    } else {
-      setHelpIsUsed((prev) => {
-        return { ...prev, fifty: true };
-      });
-      const editedAnswers = manageQuestionData(answers);
-      dispatch(setAnswersReducer(editedAnswers));
-    }
-  }, []);
+  const fiftyClickHanler = useCallback(
+    (answers) => {
+      if (helpIsUsed.fifty) {
+        return;
+      } else {
+        setHelpIsUsed((prev) => {
+          return { ...prev, fifty: true };
+        });
+        const editedAnswers = manageQuestionData(answers);
+        dispatch(setAnswersReducer(editedAnswers));
+      }
+    },
+    [helpIsUsed.fifty, setHelpIsUsed, dispatch]
+  );
   const audienceClickHanler = useCallback(() => {
     if (helpIsUsed.audience.isUsed) {
       return;
@@ -39,7 +42,7 @@ const Helps = (props) => {
         return { ...prev, audience: { isUsed: true, isShown: true } };
       });
     }
-  }, []);
+  }, [helpIsUsed.audience.isUsed, setHelpIsUsed]);
   const phoneCallClickHanler = useCallback(() => {
     if (helpIsUsed.phoneCall.isUsed) {
       return;
@@ -48,7 +51,7 @@ const Helps = (props) => {
         return { ...prev, phoneCall: { isUsed: true, isShown: true } };
       });
     }
-  }, []);
+  }, [helpIsUsed.phoneCall.isUsed, setHelpIsUsed]);
 
   return (
     <div className={styles.box}>

@@ -15,28 +15,25 @@
   cursor: pointer;
 }
 .selected {
-  background: rgb(237, 129, 28);
+  background: #ed811c;
   cursor: auto;
 }
 
 .correct {
-  background: green;
+  background: #1eba20;
   cursor: auto;
 }
 
 .wrong {
-  background: red;
+  background: #e30a07;
 }
 .blocked {
+  pointer-events: none;
   cursor: auto;
 }
 
 .answer:hover {
   background: rgb(48, 48, 153);
-}
-
-.answer.active {
-  background: rgb(95, 105, 36);
 }
 
 .answer.correct {
