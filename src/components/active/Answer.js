@@ -1,14 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { calcWinEmount } from "../../Helpers/calcWinEmount";
 import { motion } from "framer-motion";
-//import useSound from "use-sound";
-//import sounds from "../../assets/sounds/sounds.mp3";
 
 import styles from "./Answer.module.css";
 
 const Answer = React.memo((props) => {
   const [className, setClassName] = useState(styles.answer);
-  //const [animation, setAnimation] = useState(undefined);
 
   const {
     id,
@@ -22,14 +19,6 @@ const Answer = React.memo((props) => {
     questionNumberHandler,
     setEarnedMoney,
   } = props;
-
-  /*   const [play, { stop }] = useSound(sounds, {
-    sprite: {
-      wait: [0, 3000],
-      correct: [17000, 3000],
-      wrong: [24000, 3000],
-    },
-  }); */
 
   useEffect(() => {
     setCorrectAnswerIsShown(false);
@@ -50,23 +39,19 @@ const Answer = React.memo((props) => {
   }, []);
 
   const onClickHandler = (isCorrect, text) => {
-    // play({ id: "wait" });
     setSelectedAnswer(text);
     setClassName(styles.selected);
     setPauseTimer(true);
 
     delay(3000, () => {
       if (isCorrect) {
-        //   play({ id: "correct" });
         setClassName(styles.correct);
-
         delay(1500, () => {
           setSelectedAnswer(null);
           questionNumberHandler();
           setPauseTimer(false);
         });
       } else if (!isCorrect) {
-        //  play({ id: "wrong" });
         setClassName(styles.wrong);
         setCorrectAnswerIsShown(true);
         calcWinEmount(id, setEarnedMoney);
@@ -80,14 +65,6 @@ const Answer = React.memo((props) => {
   return (
     <motion.div
       className={correctAnswerIsShown && isCorrect ? styles.correct : className}
-      /* initial={
-        className === styles.selected
-          ? { background: "#ed811c" }
-          : { background: "#060116" }
-      }
-      whileHover={{ background: "#303099" }}
-      animate={animation} */
-      //exit={{ background: "#060116" }}
       onClick={() => onClickHandler(isCorrect, props.text)}
     >
       {props.text}

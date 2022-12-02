@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import data from "../../assets/Data/DUMMY_QUESTIONS";
 import Answer from "./Answer";
 import Timer from "../../Helpers/Timer";
@@ -28,6 +28,7 @@ const Trivia = (props) => {
 
   useEffect(() => {
     setSelectedAnswer(null);
+    setPauseTimer(false);
   }, [modalIsActive.startGameModal]);
 
   useEffect(() => {

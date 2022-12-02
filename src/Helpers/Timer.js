@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function Timer(props) {
   const { setModalIsActive, questionNumber, pauseTimer } = props;
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(30);
 
   useEffect(() => {
     if (timer === 0) {
@@ -22,5 +22,6 @@ export default function Timer(props) {
   useEffect(() => {
     setTimer(30);
   }, [questionNumber]);
+
   return timer;
 }

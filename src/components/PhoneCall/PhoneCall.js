@@ -20,10 +20,7 @@ const PhoneCall = (props) => {
         <h1>Calling...</h1>
       </div>
       <div>
-        <p className={styles.answer}>
-          {correctAnswer}
-          {/* Friend say's correct answer is: <br /> <span>{correctAnswer}</span> */}
-        </p>
+        <p className={styles.answer}>{correctAnswer}</p>
       </div>
     </ChartWrapper>
   );

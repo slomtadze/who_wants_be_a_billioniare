@@ -1,6 +1,4 @@
 import React, { Fragment, useCallback, useState } from "react";
-import useSound from "use-sound";
-import startSound from "../src/assets/sounds/play.mp3";
 import styles from "./App.module.css";
 import Trivia from "./components/active/Trivia";
 import Helps from "./components/active/Helps/Helps";
@@ -20,14 +18,8 @@ const App = () => {
   });
   const [questionNumber, setQuestionNumber] = useState(1);
   const [earnedMoney, setEarnedMoney] = useState(0);
-  const [playbackRate, setPlaybackRate] = React.useState(1.5);
-  const [startGameSound] = useSound(startSound, {
-    playbackRate,
-    interrupt: true,
-  });
 
   const gameStartHandler = () => {
-    //startGameSound();
     setModalIsActive((prev) => {
       return { ...prev, startGameModal: false };
     });
@@ -63,7 +55,6 @@ const App = () => {
     }
   }, [helpIsUsed.audience.isShown, helpIsUsed.phoneCall.isShown]);
 
-  // Gasasworebelia end game
   let modal;
   if (modalIsActive.startGameModal) {
     modal = (
