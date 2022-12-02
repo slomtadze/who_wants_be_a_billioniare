@@ -3,7 +3,7 @@ import ChartWrapper from "../UI/ChartWrapper";
 import { calcAudienceHelpPercentage } from "../../Helpers/calcAudienceHelpPecrentage";
 import { Chart, registerables } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import styles from "./Chart.module.css";
+
 Chart.register(...registerables);
 
 const ChartBar = (props) => {
