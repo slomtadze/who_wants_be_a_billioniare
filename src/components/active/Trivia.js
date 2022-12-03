@@ -65,6 +65,7 @@ const Trivia = (props) => {
               key={answer.id}
               isCorrect={answer.correct}
               text={answer.text}
+              answerId={answer.id}
               id={id}
               selectedAnswer={selectedAnswer}
               setSelectedAnswer={setSelectedAnswer}

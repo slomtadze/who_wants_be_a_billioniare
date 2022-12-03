@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { calcWinEmount } from "../../Helpers/calcWinEmount";
-import { motion } from "framer-motion";
 
 import styles from "./Answer.module.css";
 
@@ -63,12 +62,17 @@ const Answer = React.memo((props) => {
   };
 
   return (
-    <motion.div
+    <div
       className={correctAnswerIsShown && isCorrect ? styles.correct : className}
       onClick={() => onClickHandler(isCorrect, props.text)}
     >
-      {props.text}
-    </motion.div>
+      {props.text ? (
+        <div className={styles.answerId}>{`${props.answerId}:`}</div>
+      ) : (
+        ""
+      )}
+      {props.text ? <div>{props.text}</div> : ""}
+    </div>
   );
 });
 

@@ -113,6 +113,50 @@ const data = [
       { id: "D", text: "სამბო", correct: false },
     ],
   },
+  {
+    id: 12,
+    question:
+      "რომელი მიკრორასა შეიქმნა ამერიკის კონტინენტზე, ახალმოსახლე ევროპელების და ადგილობრივი ინდიელების შერევის შედეგად?",
+    answers: [
+      { id: "A", text: "მულატი", correct: false },
+      { id: "B", text: "კრეოლი", correct: false },
+      { id: "C", text: "მეტისი", correct: true },
+      { id: "D", text: "სამბო", correct: false },
+    ],
+  },
+  {
+    id: 13,
+    question:
+      "რომელი მიკრორასა შეიქმნა ამერიკის კონტინენტზე, ახალმოსახლე ევროპელების და ადგილობრივი ინდიელების შერევის შედეგად?",
+    answers: [
+      { id: "A", text: "მულატი", correct: false },
+      { id: "B", text: "კრეოლი", correct: false },
+      { id: "C", text: "მეტისი", correct: true },
+      { id: "D", text: "სამბო", correct: false },
+    ],
+  },
+  {
+    id: 14,
+    question:
+      "რომელი მიკრორასა შეიქმნა ამერიკის კონტინენტზე, ახალმოსახლე ევროპელების და ადგილობრივი ინდიელების შერევის შედეგად?",
+    answers: [
+      { id: "A", text: "მულატი", correct: false },
+      { id: "B", text: "კრეოლი", correct: false },
+      { id: "C", text: "მეტისი", correct: true },
+      { id: "D", text: "სამბო", correct: false },
+    ],
+  },
+  {
+    id: 14,
+    question:
+      "რომელი მიკრორასა შეიქმნა ამერიკის კონტინენტზე, ახალმოსახლე ევროპელების და ადგილობრივი ინდიელების შერევის შედეგად?",
+    answers: [
+      { id: "A", text: "მულატი", correct: false },
+      { id: "B", text: "კრეოლი", correct: false },
+      { id: "C", text: "მეტისი", correct: true },
+      { id: "D", text: "სამბო", correct: false },
+    ],
+  },
 ];
 
 export default data;

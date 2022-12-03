@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Help from "./Help";
 import { IoIosPeople } from "react-icons/io";
 import { FiPhoneCall } from "react-icons/fi";
-import manageQuestionData from "../../../Helpers/manageQuestionData";
+import manageFiftyHelpAnswers from "../../../Helpers/manageFiftyHelpAnswers";
 import { setAnswersReducer } from "../../../Store/Question-slice";
 
 import styles from "./Helps.module.css";
@@ -28,7 +28,7 @@ const Helps = (props) => {
         setHelpIsUsed((prev) => {
           return { ...prev, fifty: true };
         });
-        const editedAnswers = manageQuestionData(answers);
+        const editedAnswers = manageFiftyHelpAnswers(answers);
         dispatch(setAnswersReducer(editedAnswers));
       }
     },

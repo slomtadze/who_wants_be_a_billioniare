@@ -16,19 +16,18 @@
   width: 24%;
   text-align: center;
   margin: auto;
-  font-size: 1.5rem;
 }
 
 .help,
 .used {
   border: 3px solid #fff;
   border-radius: 1.5rem;
-  padding: 0.15em;
+  padding: 0.3em;
   width: 24%;
   height: 2.2rem;
   text-align: center;
   margin: auto;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: 0.2s;
 }
