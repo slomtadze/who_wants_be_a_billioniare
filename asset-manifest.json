@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/who_wants_be_a_billioniare/static/css/main.ad84d400.css",
+    "main.css": "/who_wants_be_a_billioniare/static/css/main.0306b1f7.css",
     "main.js": "/who_wants_be_a_billioniare/static/js/main.c6ae3ad3.js",
     "static/media/maxresdefault.jpg": "/who_wants_be_a_billioniare/static/media/maxresdefault.3486242693cf7ad12b50.jpg",
     "index.html": "/who_wants_be_a_billioniare/index.html",
-    "main.ad84d400.css.map": "/who_wants_be_a_billioniare/static/css/main.ad84d400.css.map",
+    "main.0306b1f7.css.map": "/who_wants_be_a_billioniare/static/css/main.0306b1f7.css.map",
     "main.c6ae3ad3.js.map": "/who_wants_be_a_billioniare/static/js/main.c6ae3ad3.js.map"
   },
   "entrypoints": [
-    "static/css/main.ad84d400.css",
+    "static/css/main.0306b1f7.css",
     "static/js/main.c6ae3ad3.js"
   ]
 }
