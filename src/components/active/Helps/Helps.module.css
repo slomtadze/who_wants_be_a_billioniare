@@ -41,3 +41,18 @@
   color: red;
   cursor: not-allowed;
 }
+
+@media screen and (max-width: 768px) {
+  .box {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+  .fifty,
+  .audience,
+  .call {
+    max-width: 10px;
+  }
+}

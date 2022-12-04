@@ -38,3 +38,16 @@
   font-size: 1.3rem;
   font-weight: 300;
 }
+
+@media screen and (max-width: 768px) {
+  .list-item {
+    display: none;
+  }
+
+  .list-active {
+    position: absolute;
+    left: 10%;
+    top: 100px;
+    width: 80%;
+  }
+}

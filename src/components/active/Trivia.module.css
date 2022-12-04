@@ -88,40 +88,9 @@
   animation: correct 3s ease forwards;
 }
 
-@keyframes correct {
-  0%,
-  22%,
-  42% {
-    background: mediumblue;
-  }
-  20%,
-  40%,
-  60% {
-    background: linear-gradient(#0e0124, #22074d);
-  }
-  62%,
-  100% {
-    background: green;
-  }
-}
-
-.answer.wrong {
-  animation: wrong 3s ease forwards;
-}
-
-@keyframes wrong {
-  0%,
-  22%,
-  42% {
-    background: mediumblue;
-  }
-  20%,
-  40%,
-  60% {
-    background: linear-gradient(#0e0124, #22074d);
-  }
-  62%,
-  100% {
-    background: crimson;
+@media screen and (max-width: 768px) {
+  .answers {
+    flex-direction: column;
+    align-items: center;
   }
 }

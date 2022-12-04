@@ -97,6 +97,12 @@ const App = () => {
           <Helps helpIsUsed={helpIsUsed} setHelpIsUsed={setHelpIsUsed} />
           <List number={questionNumber} />
         </div>
+        <div className={styles["helps_responsive"]}>
+          <Helps helpIsUsed={helpIsUsed} setHelpIsUsed={setHelpIsUsed} />
+        </div>
+        <div className={styles["question_responsive"]}>
+          <List number={questionNumber} />
+        </div>
       </div>
     </Fragment>
   );

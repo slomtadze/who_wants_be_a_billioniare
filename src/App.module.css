@@ -26,3 +26,28 @@
   justify-content: space-around;
   align-items: center;
 }
+.helps_responsive {
+  display: none;
+}
+.question_responsive {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .box {
+    position: relative;
+  }
+  .right-side {
+    display: none;
+  }
+  .left-side {
+    width: 100%;
+  }
+  .helps_responsive {
+    display: block;
+  }
+
+  .question_responsive {
+    display: block;
+  }
+}
