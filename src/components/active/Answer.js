@@ -66,7 +66,7 @@ const Answer = React.memo((props) => {
       className={correctAnswerIsShown && isCorrect ? styles.correct : className}
       onClick={() => onClickHandler(isCorrect, props.text)}
     >
-      {props.text ? (
+      {props.answerId ? (
         <div className={styles.answerId}>{`${props.answerId}:`}</div>
       ) : (
         ""

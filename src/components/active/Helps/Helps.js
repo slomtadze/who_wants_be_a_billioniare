@@ -29,6 +29,7 @@ const Helps = (props) => {
           return { ...prev, fifty: true };
         });
         const editedAnswers = manageFiftyHelpAnswers(answers);
+        console.log(editedAnswers);
         dispatch(setAnswersReducer(editedAnswers));
       }
     },

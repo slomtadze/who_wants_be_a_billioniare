@@ -21,7 +21,8 @@ const manageFiftyHelpAnswers = (answers) => {
     } else if (index === falseAnswerRndmIndex) {
       return randomFalseAnswer;
     } else {
-      return {};
+      console.log(item.id);
+      return { id: item.id };
     }
   });
 

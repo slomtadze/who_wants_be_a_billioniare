@@ -48,6 +48,7 @@
 
 @media (max-width: 768px) {
   .modal {
+    top: 20vh;
     width: 80%;
     left: 10%;
   }

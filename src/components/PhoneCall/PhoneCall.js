@@ -11,7 +11,7 @@ const PhoneCall = (props) => {
     setTimeout(() => {
       setCorrectAnswer(`Friend say's correct answer is: ${id} - ${text}`);
     }, 3000);
-  }, [text]);
+  }, [text, id]);
 
   return (
     <ChartWrapper>
